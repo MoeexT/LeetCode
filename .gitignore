@@ -1,0 +1,16 @@
+*.class
+*.exe
+*.
+
+.classpath
+.env
+.project
+LeetCode.iml
+tempCodeRunnerFile.py
+
+.git/
+.gradle/
+.idea/
+.settings/
+out/
+__pycache__

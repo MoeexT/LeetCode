@@ -1,0 +1,62 @@
+{
+	"Leetcode templet":{
+		"scope": "java",
+		"prefix": "lcjava",
+		"body": [
+			"/** ",
+			" * @date: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+			" * @time: $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND",
+			" * @author: MoeexT",
+			" * @problem: $1",
+			" * @url: $2",
+			" */",
+			"",
+			"public class $TM_FILENAME_BASE {",
+			"    public $3 $4($5) {",
+			"        $0",
+			"        return $7;",
+			"    }",
+			"",
+			"    public static void main(String[] args) {",
+			"        $TM_FILENAME_BASE solution = new $TM_FILENAME_BASE();",
+			"        System.out.println(solution.$4($6));",
+			"    }",
+			"}",
+		],
+		"description": "Leetcode in java."
+	},
+	"Leetcode":{
+		"scope": "java",
+		"prefix": "lcsource",
+		"body": [
+			"/** ",
+			" * @problem: $1",
+			" * @url: $0",
+			" */",
+		],
+		"description": "leetcode source."
+	},
+	"Usage":{
+		"scope": "java",
+		"prefix": "usage",
+		"body": [
+			"/** ",
+			" * @time: $1ms $2%",
+			" * @mem: $3MB $0%",
+			" */",
+		],
+		"description": "time&mem usage."
+	},
+	"help":{
+		"scope": "java",
+		"prefix": "copy",
+		"body": [
+			"/** ",
+			" * @help: $1",
+			" * @time: $2ms $3%",
+			" * @mem: $4MB $0%",
+			" */",
+		],
+		"description": "time&mem usage."
+	}
+}

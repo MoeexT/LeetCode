@@ -1,0 +1,49 @@
+{
+	"Print to console":{
+		"scope": "python",
+		"prefix": "py",
+		"body": [
+			"''' -*- coding: utf-8 -*-",
+			"date: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+			"time: $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND",
+			"author: MoeexT",
+			"problem: $1.",
+			"url: $2",
+			"'''",
+			"",
+			"",
+			"class Solution:",
+			"    def $3($4) -> $5:",
+			"        $0",
+			"",
+			"",
+			"if __name__ == \"__main__\":",
+			"    solution = Solution()",
+			"    print(solution.$3($6))",
+		],
+		"description": "Leetcode in py."
+	},
+	"Usage":{
+		"scope": "python",
+		"prefix": "usage",
+		"body": [
+			"'''",
+			"time: $1ms $2%",
+			"mem: $3MB $0%",
+			"'''",
+		],
+		"description": "time&mem usage."
+	},
+	"Learn from":{
+		"scope": "python",
+		"prefix": "ln",
+		"body": [
+			"'''",
+			"from: $1",
+			"time: $2ms $3%",
+			"mem: $4MB $0%",
+			"'''",
+		],
+		"description": "time&mem usage."
+	}
+}
