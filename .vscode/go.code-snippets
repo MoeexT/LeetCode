@@ -5,6 +5,8 @@
 		"body": [
 			"// url: $1",
 			"// problem: $2",
+			"",
+			"$0"
 		],
 		"description": "leetcode source."
 	},

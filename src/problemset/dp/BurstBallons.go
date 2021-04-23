@@ -1,4 +1,4 @@
-package dp
+package main
 
 // problem:
 // url: https://leetcode-cn.com/problems/burst-balloons/solution/chuo-qi-qiu-by-leetcode-solution/

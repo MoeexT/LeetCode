@@ -10,9 +10,19 @@ public class ListNode {
         val = x;
     }
 
+    public static ListNode generateList(int[] list) {
+        ListNode head = new ListNode(), cur = head;
+        for (int value : list) {
+            ListNode node = new ListNode(value);
+            cur.next = node;
+            cur = node;
+        }
+        return head.next;
+    }
+
     public static void printList(ListNode node) {
         while (node != null) {
-            System.out.print(node.val);
+            System.out.printf("%d",node.val);
             if (node.next != null) {
                 System.out.print(" -> ");
             }
@@ -21,4 +31,15 @@ public class ListNode {
         System.out.println();
     }
 
+    @Override
+    public String toString() {
+        return "ListNode{" +
+                "val=" + val +
+                '}';
+    }
+
+    public static void main(String[] args) {
+        ListNode list = ListNode.generateList(new int[]{});
+        ListNode.printList(list);
+    }
 }

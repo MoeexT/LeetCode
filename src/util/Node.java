@@ -14,8 +14,7 @@ public class Node {
     // 单链表
     public Node next;
     // 双链表
-    public Node left;
-    public Node right;
+    public Node prev;
     // 复杂链表
     public Node random;
 
@@ -40,20 +39,31 @@ public class Node {
      */
     public Node(int val, Node left, Node right) {
         this.val = val;
-        this.left = left;
-        this.right = right;
+        this.prev = left;
+        this.next = right;
+    }
+
+    public Node(int[] values) {
+        if (values.length == 0) {
+            throw new IllegalArgumentException("Expect at least 1 element.");
+        }
+        this.val = values[0];
+        Node cur = this;
+        for (int i = 1; i < values.length; i++) {
+            cur.next = new Node(values[i]);
+            cur = cur.next;
+        }
     }
 
     public Node(int val) {
         this.val = val;
     }
 
-    public Node() {
-    }
+    public Node() {}
 
     /*@Override
     public String toString() {
-        return "Node{" +
+        return "DoublyNode{" +
                 "val=" + val +
                 ", random=" + random.val +
                 '}';
@@ -83,10 +93,10 @@ public class Node {
         Set<Node> set = new HashSet<>();
         while (!set.contains(head)) {
             System.out.print(head.val);
-            if (!set.contains(head.right))
+            if (!set.contains(head.next))
                 System.out.print(" -> ");
             set.add(head);
-            head = head.right;
+            head = head.next;
         }
         System.out.println();
     }
@@ -94,11 +104,12 @@ public class Node {
     /**
      * 将字符串形式链表转化为真实链表，任何非数字的字符都会被忽略。
      * "1 -> 2 -> 3 -> 4 -> 5"
-     * Node(1) -> Node(2) -> Node(3) -> Node(4) -> Node(5)
+     * DoublyNode(1) -> DoublyNode(2) -> DoublyNode(3) -> DoublyNode(4) -> DoublyNode(5)
+     *
      * @param string 字符串
      * @return 链表
      */
-    public static Node strToList(String string) {
+    public static Node from(String string) {
         // "1 -> 2 -> 3 -> 4 -> 5"
         String[] valList = string.trim().split("[^0-9]+");
         if (valList.length == 0)
@@ -115,6 +126,7 @@ public class Node {
     }
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString("asdnasudb".split("[^0-9]+")));
+        Node head = new Node(new int[]{1});
+        Node.printSinglyList(head);
     }
 }

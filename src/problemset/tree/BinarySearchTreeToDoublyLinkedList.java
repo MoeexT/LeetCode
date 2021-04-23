@@ -20,31 +20,31 @@ public class BinarySearchTreeToDoublyLinkedList {
     public Node treeToDoublyList(Node root) {
         if (root == null) return null;
         inOrder(root);
-        cur.right = head.right;
-        head.right.left = cur;
-        return head.right;
+        cur.next = head.next;
+        head.next.prev = cur;
+        return head.next;
     }
 
     public void inOrder(Node root) {
         if (root == null) return;
-        inOrder(root.left);
+        inOrder(root.prev);
         concat(root);
-        inOrder((root.right));
+        inOrder((root.next));
     }
 
     private void concat(Node node) {
-        cur.right = node;
-        node.left = cur;
-        cur = cur.right;
+        cur.next = node;
+        node.prev = cur;
+        cur = cur.next;
     }
 
     public static void main(String[] args) {
         BinarySearchTreeToDoublyLinkedList solution = new BinarySearchTreeToDoublyLinkedList();
         Node root = new Node(4);
-        root.left = new Node(2);
-        root.left.left = new Node(1);
-        root.left.right = new Node(3);
-        root.right = new Node(5);
+        root.prev = new Node(2);
+        root.prev.prev = new Node(1);
+        root.prev.next = new Node(3);
+        root.next = new Node(5);
 
         Node ans = solution.treeToDoublyList(null);
         Node.printDoublyList(ans);

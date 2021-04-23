@@ -2,12 +2,12 @@ package problemset.string;
 // https://leetcode-cn.com/problems/zigzag-conversion/
 
 public class ZigzagConversion {
-    public static String convert(String s, int numRows) {
-        /**
-         * 15ms: 35.5%
-         * 41.1MB: 7.57%
-         */
-        if (s == null || s == "" || numRows == 1) {
+    /**
+     * 15ms: 35.5%
+     * 41.1MB: 7.57%
+     */
+    public static String convert_(String s, int numRows) {
+        if (s == null || s.equals("") || numRows == 1) {
             return s;
         }
         StringBuilder S = new StringBuilder(s);
@@ -30,8 +30,36 @@ public class ZigzagConversion {
         return sb.toString();
     }
 
+    /*
+     * 数学计算
+     * @time: 3ms 98.08%
+     * @mem: 38.7MB 81.47%
+     */
+    public String convert(String s, int numRows) {
+        if (numRows == 1) return s;
+        int npg = (numRows - 1) << 1;  // nums per group 每组有几个字符
+        int groupNum = s.length() / npg;  // 有几组，这里没有加1，但是下边循环里加上了
+        char[] chs = s.toCharArray();
+        int chl = chs.length;
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j <= groupNum; j++) {
+                if ((i == 0 || i == numRows - 1) && j * npg + i < chl) {
+                    sb.append(chs[j * npg + i]);
+                } else {
+                    if (j * npg + i < chl)
+                        sb.append(chs[j * npg + i]);
+                    if ((j + 1) * npg - i < chl) {
+                        sb.append(chs[(j + 1) * npg - i]);
+                    }
+                }
+            }
+        }
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
-        String res = ZigzagConversion.convert("LEETCODEISHIRING", 3);
-        System.out.println(res.equals("LCIRETOESIIGEDHN"));
+        System.out.println(new ZigzagConversion().convert("AB", 2));
     }
 }

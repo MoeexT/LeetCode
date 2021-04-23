@@ -14,7 +14,7 @@ class Solution:
     #
     #     stack = []
     #     while head:
-    #         stack.insert(0, head)
+    #         stack.insertSort(0, head)
     #         head = head.next
     #
     #     res = stack[0]

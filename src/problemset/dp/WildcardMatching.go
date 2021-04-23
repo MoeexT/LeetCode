@@ -1,4 +1,4 @@
-package dp
+package main
 
 func isMatch(s string, p string) bool {
 	m, n := len(s), len(p)

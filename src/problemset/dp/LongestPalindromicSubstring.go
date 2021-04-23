@@ -1,4 +1,4 @@
-package dp
+package main
 
 func longestPalindrome(s string) string {
 	n := len(s)

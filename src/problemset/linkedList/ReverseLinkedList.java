@@ -15,6 +15,7 @@ public class ReverseLinkedList {
      * @time: 0ms 100.00%
      * @mem: 40.1MB 5.13%
      */
+    /*
     public ListNode reverseList(ListNode head) {
         ListNode pre = null, cur = head;
         while (head != null) {
@@ -23,20 +24,29 @@ public class ReverseLinkedList {
             cur.next = pre;
             pre = cur;
         }
-            return cur;
+        return cur;
+    }*/
+
+    /*
+     *
+     * @time: 0ms 100.00%
+     * @mem: 38.1MB 81.05%
+     */
+    public ListNode reverseList(ListNode head) {
+        return reverse(null, head);
+    }
+
+    private ListNode reverse(ListNode pre, ListNode cur) {
+        if (cur == null) return pre;
+        ListNode nxt = cur.next;
+        cur.next = pre;
+        return reverse(cur, nxt);
     }
 
     public static void main(String[] args) {
         ReverseLinkedList obj = new ReverseLinkedList();
-        ListNode node = new ListNode(1);
-        node.next = new ListNode(2);
-        node.next.next = new ListNode(3);
-        node.next.next.next = new ListNode(4);
-        node.next.next.next.next = new ListNode(5);
-        ListNode rev = obj.reverseList(node);
-        while (rev != null) {
-            System.out.println(rev.val);
-            rev = rev.next;
-        }
+        ListNode node = ListNode.generateList(new int[]{1, 2, 3, 4, 5});
+        ListNode.printList(node);
+        ListNode.printList(obj.reverseList(node));
     }
 }

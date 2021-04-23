@@ -7,60 +7,43 @@ package problemset.hashTable;
  * @url: https://leetcode-cn.com/problems/lru-cache/
  */
 
-import util.LRURecord;
+import util.DoubleLinkedList;
+import util.DoubleLinkedList.DoublyNode;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class LRUCache {
 
-    /* 超时
-     */
-
-    int capacity;
-    Map<Integer, LRURecord> map = new HashMap<>();
+    private final int capacity;
+    private HashMap<Integer, DoublyNode> map;
+    private DoubleLinkedList cache;
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
+        map = new HashMap<>();
+        cache = new DoubleLinkedList();
     }
 
     public int get(int key) {
-        flush();
-        if (map.containsKey(key)) {
-            map.get(key).reset();
-            return map.get(key).getVal();
-        }
-        return -1;
+        if (!map.containsKey(key)) return -1;
+        int val = map.get(key).val;
+        put(key, val);
+        return val;
     }
 
     public void put(int key, int value) {
-        flush();
-        if (map.size() < capacity || map.containsKey(key)) {
-            map.put(key, new LRURecord(value));
+        DoublyNode newNode = new DoublyNode(key, value);
+        if (map.containsKey(key)) {
+            cache.delete(map.get(key));
         } else {
-            // TODO
-            // 置换出最不常用的块
-            int lstKey = 0;
-            LRURecord lstRecord = new LRURecord(-2);
-            lstRecord.setTime(-1);
-            for (Map.Entry<Integer, LRURecord> entry : map.entrySet()) {
-                if (entry.getValue().getTime() > lstRecord.getTime()) {
-                    lstKey = entry.getKey();
-                    lstRecord = entry.getValue();
-                }
+            if (map.size() == capacity) {
+                int k = cache.deleteLast();
+                map.remove(k);
             }
-            map.remove(lstKey);
-            map.put(key, new LRURecord(value));
         }
-    }
+        cache.addFirst(newNode);
+        map.put(key, newNode);
 
-    /**
-     * 将所有记录的时间戳加 1
-     */
-    private void flush() {
-        for (LRURecord record : map.values()) {
-            record.update();
-        }
     }
 
     public static void main(String[] args) {
